@@ -8,7 +8,7 @@
     body {
       margin: 0;
       height: 100vh;
-      background: #f9f3e3; /* same soft background as original */
+      background: #f9f3e3;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -34,11 +34,33 @@
       transform: scale(1.05);
       box-shadow: 4px 6px 12px rgba(0,0,0,0.3);
     }
+
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
 <body>
 
-<a href="https://no-space.my.canva.site/#page-PBnYR6CDGyrChLtL" class="paper-link">Dive in the surprise</a>
+<a href="https://example.com" class="paper-link hidden" id="surprise">Dive in the surprise</a>
+
+<script>
+  // Unlock at 11 August 2025, 15:40 local time
+  const targetTime = new Date("2025-08-11T15:40:00");
+
+  function checkTime() {
+    const now = new Date();
+    const link = document.getElementById("surprise");
+
+    if (now >= targetTime) {
+      link.classList.remove("hidden");
+    } else {
+      setTimeout(checkTime, 1000); // check every second
+    }
+  }
+
+  checkTime();
+</script>
 
 </body>
 </html>
