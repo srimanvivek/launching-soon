@@ -47,14 +47,14 @@
 
 <script>
   // Unlock time — local time
-  const targetTime = new Date("2025-08-11T15:40:00");
+  const targetTime = new Date("2025-08-11T15:55:00");
 
   function checkTime() {
     const now = new Date();
     const paper = document.getElementById("paper");
 
     if (now >= targetTime) {
-      paper.innerHTML = `<"srimanvivek.framer.ai">Dive in the surprise</a>`;
+      paper.innerHTML = `<a href="https://srimanvivek.framer.ai" target="_blank">Dive in the surprise</a>`;
     } else {
       setTimeout(checkTime, 1000); // check every second
     }
