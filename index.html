@@ -33,6 +33,12 @@
       box-shadow: 4px 6px 12px rgba(0,0,0,0.3);
     }
 
+    .countdown {
+      font-size: 20px;
+      margin-top: 15px;
+      color: #444;
+    }
+
     a {
       color: inherit;
       text-decoration: none;
@@ -49,18 +55,31 @@
   // ======= CHANGE THESE TIMES =======
   const startTime = new Date("2025-09-21T00:00:05"); // When the page goes LIVE
   const endTime   = new Date("2025-09-22T00:00:05"); // When the page goes UNLIVE
+  const surpriseLink = "https://no-space.my.canva.site/jhumri/"; // Your link
   // ==================================
+
+  const paper = document.getElementById("paper");
 
   function checkTime() {
     const now = new Date();
-    const paper = document.getElementById("paper");
 
     if (now >= startTime && now <= endTime) {
       // LIVE state
-      paper.innerHTML = `<a href="https://no-space.my.canva.site/jhumri/" target="_blank">Dive in the surprise</a>`;
+      paper.innerHTML = `<a href="${surpriseLink}" target="_blank">Dive in the surprise</a>`;
     } else if (now < startTime) {
-      // BEFORE LIVE
-      paper.innerHTML = "It will be active on directed time";
+      // BEFORE LIVE with countdown
+      const diff = startTime - now;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      paper.innerHTML = `
+        It will be active on directed time
+        <div class="countdown">
+          Countdown: ${days}d ${hours}h ${minutes}m ${seconds}s
+        </div>
+      `;
     } else {
       // AFTER UNLIVE
       paper.innerHTML = "No data found; wait till 27th and contact the wisher";
